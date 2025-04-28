@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api/v1", // Ajuste para a URL da sua API
+  baseURL: import.meta.env.VITE_API_URL, 
 })
 
 // Interceptor para lidar com tokens expirados
