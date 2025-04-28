@@ -54,4 +54,5 @@ export const memoryService = {
   getById: (id) => api.get(`/memories/${id}/`),
   create: (data) => api.post("/memories/", data),
   delete: (id) => api.delete(`/memories/${id}/`),
+  getAllPublics: () => api.get("/memories/publics/")
 }

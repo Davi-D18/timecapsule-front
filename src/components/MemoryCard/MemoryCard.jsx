@@ -4,7 +4,7 @@ import { Clock, Trash2, Lock } from "lucide-react"
 import { formatDate } from "../../utils/formatDate"
 import styles from "./MemoryCard.module.scss"
 
-const MemoryCard = ({ memory, onDelete }) => {
+const MemoryCard = ({ memory, onDelete, publicMemory }) => {
   const [isDeleting, setIsDeleting] = useState(false)
 
   const handleDelete = async (e) => {
@@ -21,17 +21,24 @@ const MemoryCard = ({ memory, onDelete }) => {
     }
   }
 
-  const dataAtual = new Date().toLocaleDateString("pt-BR");
+  const hoje = new Date()       
+  const dataDesbloqueio = new Date(memory.unlock_date)
+
+  const isUnlocked = hoje >= dataDesbloqueio
 
   return (
     <>
-      {dataAtual >= formatDate(memory.unlock_date) ? (
+      {isUnlocked ? (
       <Link to={`/memories/${memory.id}`} className={styles.card}>
       <div className={styles.header}>
         <h3 className={styles.title}>{memory.title}</h3>
-        <button onClick={handleDelete} className={styles.deleteButton} disabled={isDeleting}>
+        {publicMemory ? (
+          ""
+        ): (
+          <button onClick={handleDelete} className={styles.deleteButton} disabled={isDeleting}>
           <Trash2 size={18} />
         </button>
+        )}
       </div>
       <p className={styles.content}>
         {(
@@ -46,7 +53,7 @@ const MemoryCard = ({ memory, onDelete }) => {
           <Clock size={14} />
           <span>Criada em {formatDate(memory.created_at)}</span>
         </div>
-          {dataAtual >= formatDate(memory.unlock_date) ? (
+          {hoje >= formatDate(memory.unlock_date) ? (
             <div className={styles.unlockDate}>
               Desbloqueada em {formatDate(memory.unlock_date)}
             </div>
@@ -62,9 +69,13 @@ const MemoryCard = ({ memory, onDelete }) => {
         <Lock size={20} strokeWidth={1.5} />
         <div className={styles.header}>
           <h3 className={styles.title}>{memory.title}</h3>
-          <button onClick={handleDelete} className={styles.deleteButton} disabled={isDeleting}>
+          {publicMemory ? (
+          ""
+          ): (
+            <button onClick={handleDelete} className={styles.deleteButton} disabled={isDeleting}>
             <Trash2 size={18} />
           </button>
+          )}
         </div>
         <p className={styles.content}>
           {(
@@ -79,7 +90,7 @@ const MemoryCard = ({ memory, onDelete }) => {
             <Clock size={14} />
             <span>Criada em {formatDate(memory.created_at)}</span>
           </div>
-            {dataAtual >= formatDate(memory.unlock_date) ? (
+            {hoje >= formatDate(memory.unlock_date) ? (
               <div className={styles.unlockDate}>
                 Desbloqueada em {formatDate(memory.unlock_date)}
               </div>

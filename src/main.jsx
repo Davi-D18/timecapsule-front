@@ -11,6 +11,7 @@ import CreateMemory from "./pages/CreateMemory/CreateMemory";
 import MemoryDetail from "./pages/MemoryDetail/MemoryDetail";
 import NotFound from "./pages/NotFound/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import MemoriesPublics from "./pages/MemoriesPublics/MemoriesPublics"
 import "./styles/global.scss";
 
 const routes = [
@@ -49,6 +50,14 @@ const routes = [
             <CreateMemory />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/public",
+        element: (
+          <ProtectedRoute>
+            <MemoriesPublics/>
+          </ProtectedRoute>
+        )
       },
       {
         path: "/memories/:id",

@@ -30,8 +30,8 @@ const Navbar = () => {
               <Link to="/" className={styles.navLink} onClick={toggleMenu}>
                 Memórias
               </Link>
-              <Link to="/create" className={styles.navLink} onClick={toggleMenu}>
-                Nova Memória
+              <Link to="/public" className={styles.navLink} onClick={toggleMenu}>
+                Públicas
               </Link>
               <div className={styles.userSection}>
                 <div className={styles.userInfo}>

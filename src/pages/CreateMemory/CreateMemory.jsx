@@ -9,6 +9,7 @@ const CreateMemory = () => {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
   const [unlockDate, setUnlockDate] = useState("")
+  const [memoryPublic, setMemoryPublic] = useState(false)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const { toast } = useToast()
@@ -42,6 +43,7 @@ const CreateMemory = () => {
         title,
         content,
         unlock_date: unlockDate,
+        is_public: memoryPublic,   
       })
 
       toast({
@@ -96,6 +98,21 @@ const CreateMemory = () => {
               rows={8}
               required
             />
+          </div>
+
+          <div className={styles.checkbox_wrapper_46}>
+            <input type="checkbox"
+              id="cbx-46" 
+              className={styles.inp_cbx} 
+              checked={memoryPublic}                                  
+              onChange={(e) => setMemoryPublic(e.target.checked)} />
+
+            <label htmlFor="cbx-46" className={styles.cbx}
+              ><span>
+                <svg viewBox="0 0 12 10" height="10px" width="12px">
+                  <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+              ><span>Memória pública?</span>
+            </label>
           </div>
 
           <div className={styles.formGroup}>
