@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { memoryService } from "../../services/api"
@@ -40,7 +38,7 @@ const CreateMemory = () => {
       const username = JSON.parse(storedData);
 
       await memoryService.create({
-        owner: username.user.email,
+        owner: username.email,
         title,
         content,
         unlock_date: unlockDate,

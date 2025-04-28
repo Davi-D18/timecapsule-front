@@ -92,7 +92,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       toast({
         title: "Erro ao registrar",
-        description: error.response.data.username || error.response.data.email || "Não foi possível criar sua conta",
+        description: error.response?.data.username || error.response?.data.email || "Não foi possível criar sua conta",
         type: "destructive",
       })
       console.log(error)
